@@ -2,7 +2,7 @@
 using System.Linq;
 using Xunit;
 
-namespace Linq.Exercises.Xunit
+namespace Linq.Exercises.Xunit.SetOne
 {
     public class Aggregate
     {
@@ -15,7 +15,7 @@ namespace Linq.Exercises.Xunit
         public void Count_all_numbers()
         {
             // First test is solved to show you how to use these exercises.
-            int result = TestData.Numbers.Count();
+            var result = TestData.Numbers.Count();
 
             Assert.Equal(10, result);
         }
@@ -23,7 +23,7 @@ namespace Linq.Exercises.Xunit
         [Fact]
         public void Count_all_occurences_of_1()
         {
-            int result = TestData.Numbers.Count();
+            var result = TestData.Numbers.Count();
 
             Assert.Equal(2, result);
         }
@@ -32,7 +32,7 @@ namespace Linq.Exercises.Xunit
         public void Count_all_animals_having_character_count_equal_to_5()
         {
             // Hint: use nested count
-            int result = TestData.Animals.Count();
+            var result = TestData.Animals.Count();
 
             Assert.Equal(2, result);
         }
@@ -40,7 +40,7 @@ namespace Linq.Exercises.Xunit
         [Fact]
         public void Sum_all_numbers()
         {
-            int result = TestData.Numbers.Count();
+            var result = TestData.Numbers.Count();
 
             Assert.Equal(-2, result);
         }
@@ -48,7 +48,7 @@ namespace Linq.Exercises.Xunit
         [Fact]
         public void Sum_all_characters_in_animal_names()
         {
-            int result = TestData.Animals.Count();
+            var result = TestData.Animals.Count();
 
             Assert.Equal(38, result);
         }
@@ -56,7 +56,7 @@ namespace Linq.Exercises.Xunit
         [Fact]
         public void Sum_all_birth_years()
         {
-            int result = TestData.People.Count();
+            var result = TestData.People.Count();
 
             Assert.Equal(7915, result);
         }
@@ -64,7 +64,7 @@ namespace Linq.Exercises.Xunit
         [Fact]
         public void Find_minimum_number()
         {
-            int result = TestData.Numbers.Count();
+            var result = TestData.Numbers.Count();
 
             Assert.Equal(-5, result);
         }
@@ -72,7 +72,7 @@ namespace Linq.Exercises.Xunit
         [Fact]
         public void Find_length_of_shortest_animal_name()
         {
-            int result = TestData.Animals.Count();
+            var result = TestData.Animals.Count();
 
             Assert.Equal(4, result);
         }
@@ -80,15 +80,16 @@ namespace Linq.Exercises.Xunit
         [Fact]
         public void Find_earliest_birthday()
         {
-            DateTime result = TestData.People.Min(x => x.Born);
+            var result = TestData.People.Count();
 
-            Assert.Equal(new DateTime(1950, 12, 1), result);
+            //Correct linq statement then uncomment assert
+            //Assert.Equal(new DateTime(1950, 12, 1), result);
         }
 
         [Fact]
         public void Find_maximum_number()
         {
-            int result = TestData.Numbers.Count();
+            var result = TestData.Numbers.Count();
 
             Assert.Equal(5, result);
         }
@@ -96,7 +97,7 @@ namespace Linq.Exercises.Xunit
         [Fact]
         public void Find_length_of_longest_animal_name()
         {
-            int result = TestData.Animals.Count();
+            var result = TestData.Animals.Count();
 
             Assert.Equal(9, result);
         }
@@ -104,15 +105,16 @@ namespace Linq.Exercises.Xunit
         [Fact]
         public void Find_latest_birthday()
         {
-            DateTime result = TestData.People.First().Born;
+            var result = TestData.People.Count();
 
-            Assert.Equal(new DateTime(2001, 5, 21), result);
+            //Correct linq statement then uncomment assert
+            //Assert.Equal(new DateTime(2001, 5, 21), result);
         }
 
         [Fact]
         public void Find_average_of_numbers()
         {
-            double result = TestData.Numbers.Count();
+            var result = TestData.Numbers.Count();
 
             Assert.Equal(-0.2, result);
         }
@@ -120,7 +122,7 @@ namespace Linq.Exercises.Xunit
         [Fact]
         public void Find_average_of_birth_years()
         {
-            double result = TestData.People.Count();
+            var result = TestData.People.Count();
 
             Assert.Equal(1978.75, result);
         }
@@ -130,7 +132,10 @@ namespace Linq.Exercises.Xunit
         {
             // Aggregate is a little bit more complicated
             // so first test is solved to show you how to use it.
-            int result = TestData.Numbers.Aggregate((sum, nextValue) => sum + nextValue);
+            // 0 = inital value of sum
+            // sum = accumalator
+            // nextValue = current value in sequence
+            var result = TestData.Numbers.Aggregate(0, (sum, nextValue) => sum + nextValue);
 
             Assert.Equal(-2, result);
         }
@@ -154,39 +159,12 @@ namespace Linq.Exercises.Xunit
             // else add 5 to it
             // and add resulting number to your aggregate
 
-            int result1 = TestData.People.Aggregate(256, (sum, person) =>
+            var result = TestData.People.Aggregate(0, (sum, person) =>
             {
-                int output;
-                if (person.Born.Day > 15)
-                {
-                    output = person.Born.Day - 10;
-                }
-                else
-                {
-                    output = person.Born.Day + 5;
-                }
-                return sum + output;
+                return sum;
             });
-
-            int result2 = TestData.People.Aggregate(256, (sum, person) =>
-            {
-                var output = person.Born.Day > 15
-                    ? person.Born.Day - 10
-                    : person.Born.Day + 5;
-                return sum + output;
-            });
-
-            int result = TestData.People.Aggregate(256, (sum, person) =>
-                sum + SecretFormula(person.Born.Day));
 
             Assert.Equal(296, result);
-        }
-
-        private int SecretFormula(int bornDay)
-        {
-            return bornDay > 15
-                    ? bornDay - 10
-                    : bornDay + 5;
         }
     }
 }
