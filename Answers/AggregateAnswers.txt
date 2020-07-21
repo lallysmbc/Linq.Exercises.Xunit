@@ -43,4 +43,20 @@ Aggregate_Product_of_all_numbers()
     int result = TestData.Numbers.Aggregate((sum, nextNumber) => sum * nextNumber);
 
 Aggregate_Secret_formula()
-    int result = TestData.People.Aggregate(256, (sum, person) => sum + (person.Born.Day > 15 ? (person.Born.Day - 10) : (person.Born.Day +5)));
+    var result2 = TestData.People.Aggregate(256, (sum, person) =>
+    {
+        var output = person.Born.Day > 15
+            ? person.Born.Day - 10
+            : person.Born.Day + 5;
+        return sum + output;
+    });
+
+    var result = TestData.People.Aggregate(256, (sum, person) =>
+                sum + SecretFormula(person.Born.Day));
+
+    private int SecretFormula(int bornDay)
+    {
+        return bornDay > 15
+                ? bornDay - 10
+                : bornDay + 5;
+    }
