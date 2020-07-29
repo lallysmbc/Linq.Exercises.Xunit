@@ -42,23 +42,9 @@ namespace Linq.Exercises.Xunit.Projection
         }
 
         [Fact]
-        public void Produce_A_NewList_Of_SMBCProduct_Objects_Representing_The_ProductName_And_CategoryCombined()
-        {
-            //check SMBCProduct object in TestData3
-            #region Test data answer
-
-            var data = new List<SMBCProduct> { new SMBCProduct { FullName = "Chai Beverages" }, new SMBCProduct { FullName = "Chang Beverages" }, new SMBCProduct { FullName = "Aniseed Syrup Condiments" }, new SMBCProduct { FullName = "Chef Anton's Cajun Seasoning Condiments" } };
-            #endregion
-
-            //var result = TestData3.Products.Select();
-
-            //Assert.Equal(data.First().FullName, result.First().FullName);
-            //Assert.Equal(data.Last().FullName, result.Last().FullName);
-        }
-
-        [Fact]
         public void Produce_A_NewList_Of_Annoymous_Objects_Representing_The_ProductName()
         {
+            //annoymouse object with propety: ProductName
             #region Test data answer
 
             var item1 = new { ProductName = "Chai" };
@@ -74,6 +60,22 @@ namespace Linq.Exercises.Xunit.Projection
             //Assert.Equal(item3.ProductName, result.ToList()[2].ProductName);
             //Assert.Equal(item4.ProductName, result.ToList()[3].ProductName);
         }
+
+        [Fact]
+        public void Produce_A_NewList_Of_SMBCProduct_Objects_Representing_The_ProductName_And_CategoryCombined()
+        {
+            //check SMBCProduct object in TestData3
+            #region Test data answer
+
+            var data = new List<SMBCProduct> { new SMBCProduct { FullName = "Chai Beverages" }, new SMBCProduct { FullName = "Chang Beverages" }, new SMBCProduct { FullName = "Aniseed Syrup Condiments" }, new SMBCProduct { FullName = "Chef Anton's Cajun Seasoning Condiments" } };
+            #endregion
+
+            //var result = TestData3.Products.Select();
+
+            //Assert.Equal(data.First().FullName, result.First().FullName);
+            //Assert.Equal(data.Last().FullName, result.Last().FullName);
+        }
+
 
         [Fact]
         public void Produce_A_NewList_Of_Annoymous_Objects_Representing_If_TheProduct_Is_Available_And_The_ProductName()
